@@ -1046,9 +1046,6 @@ body {
     background-repeat: no-repeat;
     background-color: rgb(0, 0, 0);
 }
-.hide {
-    display: none;
-}
 .gwd-img-ajzb {
     position: absolute;
     width: 250px;
@@ -1875,6 +1872,22 @@ body {
 }
 .weatherRainy {
     opacity: 0;
+}
+.hide {
+    display: none;
+}
+.apiHide {
+    display: none !important;
+}
+#banner-page.gwd-play-animation .event-9-animation {
+    animation: gwd-empty-animation 0.575s linear 0s 1 normal forwards;
+    -webkit-animation: gwd-empty-animation 0.575s linear 0s 1 normal forwards;
+    -moz-animation: gwd-empty-animation 0.575s linear 0s 1 normal forwards;
+}
+#banner-page.gwd-play-animation .event-10-animation {
+    animation: gwd-empty-animation 0.65s linear 0s 1 normal forwards;
+    -webkit-animation: gwd-empty-animation 0.65s linear 0s 1 normal forwards;
+    -moz-animation: gwd-empty-animation 0.65s linear 0s 1 normal forwards;
 }</style><script data-source="googbase_min.js" data-version="3" data-exports-type="googbase" src="googbase_min.js"></script><script data-source="gwd_webcomponents_min.js" data-version="5" data-exports-type="gwd_webcomponents" src="gwd_webcomponents_min.js"></script>
   <script data-source="gwdpage_min.js" data-version="8" data-exports-type="gwd-page" src="gwdpage_min.js"></script><script data-source="gwdpagedeck_min.js" data-version="9" data-exports-type="gwd-pagedeck" src="gwdpagedeck_min.js"></script><script data-source="https://s0.2mdn.net/ads/studio/Enabler.js" data-exports-type="gwd-doubleclick" src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
     <script data-source="gwddoubleclick_min.js" data-version="14" data-exports-type="gwd-doubleclick" src="gwddoubleclick_min.js"></script><script data-source="gwdtaparea_min.js" data-version="4" data-exports-type="gwd-taparea" src="gwdtaparea_min.js"></script><script data-source="gwdimage_min.js" data-version="9" data-exports-type="gwd-image" src="gwdimage_min.js"></script>
@@ -1891,11 +1904,7 @@ body {
           function getWeather(location) {
             Weather.getCurrent(location, function(current) {
               var weatherData = current.data.weather[0].main;
-              if (weatherData == Thunderstorm || weatherData == Drizzle || weatherData == Rain || weatherData == Snow) {
-                $("#div-icon-weather img.weatherRainy").hide();
-              } else {
-                $("#div-icon-weather img.weatherSunny").show();
-              }
+              $("body").append("<p class='getWeather apiHide'>" + weatherData + "</p>");
             });
           }
 
@@ -1907,8 +1916,8 @@ body {
            */
           function getLocation(lat, long) {
             var geocoder = new google.maps.Geocoder;
-            var input = document.getElementById('latlng').value;
-            var latlngStr = input.split(',', 2);
+            // var input = document.getElementById('latlng').value;
+            // var latlngStr = input.split(',', 2);
             var latlng = {
               lat: parseFloat(lat),
               lng: parseFloat(long)
@@ -1920,7 +1929,7 @@ body {
                 if (results[1]) {
                   // console.log(results[1].address_components);
                   var cityName = results[1].address_components[1].long_name;
-                  $("#jsCity").html(cityName);
+                  $("body").append("<p class='getCity apiHide'>" + cityName + "</p>");
                   getWeather(results[1].address_components[2].long_name);
                 } else {
                   // window.alert('');
@@ -1967,7 +1976,7 @@ body {
           </div>
           <div class="location-wrap" id="div-location">
             <img is="gwd-image" source="icon-location.png" id="icon-location" class="gwd-img-11as">
-            <p class="gwd-p-spfq" id="jsCity">Manila</p>
+            <p class="gwd-p-spfq" id="jsCity">Loading...</p>
             <img is="gwd-image" source="icon-branding.png" id="icon-branding" class="gwd-img-dgkg">
           </div>
           <div class="forecast-left" id="div-forecast">
@@ -1984,6 +1993,8 @@ body {
             <img is="gwd-image" source="text-tagline-D.png" id="RY-text-tagline-D" class="gwd-img-ch3u hide weatherRainy">
           </div>
           <img is="gwd-image" source="button-rollover.png" id="button-rollover" class="gwd-img-jhhu" scaling="cover">
+          <div class="gwd-animation-event event-9-animation" data-event-name="event-9" data-event-time="575"></div>
+          <div class="gwd-animation-event event-10-animation" data-event-name="event-10" data-event-time="650"></div>
         </div>
       </div>
       <div is="gwd-page" id="expanded-page" expanded="" data-gwd-name="Sunny page" class="gwd-page-wrapper expanded gwd-lightbox" data-gwd-width="500px" data-gwd-height="250px">
@@ -2051,6 +2062,8 @@ body {
       gwd.actions.events.addHandler('expanded-page', 'event-6', gwd.auto_Expanded_pageEvent_6, false);
       gwd.actions.events.addHandler('expanded-page_1', 'event-7', gwd.auto_Expanded_page_1Event_7, false);
       gwd.actions.events.addHandler('expanded-page_1', 'event-8', gwd.auto_Expanded_page_1Event_8, false);
+      gwd.actions.events.addHandler('banner-page', 'event-9', gwd.location, false);
+      gwd.actions.events.addHandler('banner-page', 'event-10', gwd.weather, false);
       gwd.actions.timeline.captureAnimationEnd(document.body);
     };
     gwd.actions.events.deregisterEventHandlers = function(event) {
@@ -2071,6 +2084,8 @@ body {
       gwd.actions.events.removeHandler('expanded-page', 'event-6', gwd.auto_Expanded_pageEvent_6, false);
       gwd.actions.events.removeHandler('expanded-page_1', 'event-7', gwd.auto_Expanded_page_1Event_7, false);
       gwd.actions.events.removeHandler('expanded-page_1', 'event-8', gwd.auto_Expanded_page_1Event_8, false);
+      gwd.actions.events.removeHandler('banner-page', 'event-9', gwd.location, false);
+      gwd.actions.events.removeHandler('banner-page', 'event-10', gwd.weather, false);
       gwd.actions.timeline.releaseAnimationEnd(document.body);
     };
     document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
@@ -2146,6 +2161,20 @@ body {
     gwd.auto_Expanded_page_1Event_8 = function(event) {
       // GWD Predefined Function
       gwd.actions.events.setInlineStyle('img-family-D', 'display: none; ');
+    };
+    gwd.location = function(event) {
+      var cityName = $('.getCity').text();
+      $('#jsCity').text(cityName);
+    };
+    gwd.weather = function(event) {
+    var weatherData = $('.getWeather').text();
+    if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
+    $(".weatherSunny").css('opacity', 0);
+    $(".weatherRainy").css('opacity', 1);
+    } else {
+    $(".weatherSunny").css('opacity', 1);
+    $(".weatherRainy").css('opacity', 0);
+    }
     };
   </script>
   <script type="text/javascript" id="gwd-init-code">
