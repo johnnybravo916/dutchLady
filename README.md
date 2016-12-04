@@ -19,20 +19,23 @@ Use the startExpanded() call to pre-expand your creative. See the Expanding buil
 The div layer of a webpage must collapse on your creative's collapse<br/>
 <br/>
 <br/>
-Non-expanded size: 300 x 250px (h) - 200kb excluding video<br/>
-Expanded size: 500 x 250px (h) - 2.2 MB<br/>
-Expansion direction: LEFT<br/>
-Border: A 1px #333 border is required for all banners (top-most layer)<br/>
+<ul>
+  <li>Non-expanded size: 300 x 250px (h) - 200kb excluding video</li>
+  <li>Expanded size: 500 x 250px (h) - 2.2 MB</li>
+  <li>Expansion direction: LEFT</li>
+  <li>Border: A 1px #333 border is required for all banners (top-most layer)</li>
+</ul>
 <br/>
 <br/>
 Non-expanded banner will need to have a Rollover to expand button (GWD has a control that can trigger this)<br/>
 Expanded banner will need to have a Close button (in GWD too)<br/>
 Call To Action button (Find out more) will need to have a clickTag overlay (in GWD)<br/>
 <br/>
-There is also a slight change with the first frame:<br/>
-1. Display city and weather condition for tomorrow only–no more temperature<br/>
-2. Weather condition can be categorised this way:<br/>
+<strong>There is also a slight change with the first frame:<strong><br/>
+<ol>
+  <li>Display city and weather condition for tomorrow only–no more temperature</li>
+  <li>Weather condition can be categorised this way:<br/>
      - If cloudy or thunderstorm -> Thunderstorm<br/>
-     - If sunny or partially cloudy -> Sunny<br/>
-     Let me know what the API parameters are and we can tweak accordingly.<br/>
-3. There's also an additional line below 'Tomorrow's forecast' that says 'Stuck at home?', 'Nowhere to go?', 'Wondering where to go?' and 'Wondering what to do?'. Each of this line should be loaded depending on the randomisation result for each weather and activity. i.e. they should match according to the PSD.
+     - If sunny or partially cloudy -> Sunny<br/></li>
+  <li>here's also an additional line below 'Tomorrow's forecast' that says 'Stuck at home?', 'Nowhere to go?', 'Wondering where to go?' and 'Wondering what to do?'. Each of this line should be loaded depending on the randomisation result for each weather and activity. i.e. they should match according to the PSD.</li>
+</ol>

@@ -490,9 +490,6 @@
       opacity: 1;
       background-image: -webkit-radial-gradient(center center, circle cover, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 100%);
     }
-    .hide {
-      display: none;
-    }
     .gwd-img-ajzb {
       position: absolute;
       width: 250px;
@@ -795,6 +792,9 @@
     .weatherRainy{
       opacity:0;
     }
+    .hide {
+      display: none;
+    }
   </style><script data-source="googbase_min.js" data-version="3" data-exports-type="googbase" src="googbase_min.js"></script><script data-source="gwd_webcomponents_min.js" data-version="5" data-exports-type="gwd_webcomponents" src="gwd_webcomponents_min.js"></script>
   <script
   data-source="gwdpage_min.js" data-version="8" data-exports-type="gwd-page" src="gwdpage_min.js"></script><script data-source="gwdpagedeck_min.js" data-version="9" data-exports-type="gwd-pagedeck" src="gwdpagedeck_min.js"></script><script data-source="https://s0.2mdn.net/ads/studio/Enabler.js" data-exports-type="gwd-doubleclick" src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
@@ -803,6 +803,78 @@
       <script
       data-source="gwdvideo_min.js" data-version="8" data-exports-type="gwd-video" src="gwdvideo_min.js"></script>
         <script type="text/javascript" gwd-events="support" src="gwd-events-support.1.0.js"></script>
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="weather.js"></script>
+        <script>
+            /**
+             * Utilizes openweather API to get current weather by providing the city name. 
+             * @param  {str} location 
+             * @return HTML - string of current weather and weather icon
+             */
+            function getWeather(location) {
+                Weather.getCurrent( location, function( current ) {
+                  var weatherData =  current.data.weather[0].main;
+                    if (weatherData == 'Thunderstorm' || weatherData ==  'Drizzle'||weatherData == 'Rain'||weatherData == 'Snow' ){
+                      setTimeout(function() { 
+                        $( ".weatherSunny" ).css('opacity',0); 
+                        $( ".weatherRainy" ).css('opacity',1); 
+                      }, 2000);
+                    } else {
+                      setTimeout(function() { 
+                        $( ".weatherSunny" ).css('opacity',1); 
+                        $( ".weatherRainy" ).css('opacity',0); 
+                      }, 2000);
+                    }
+                });
+            }
+
+            /**
+             * Get Location uses google maps api to get the city name that is needed by the weather API
+             * @param  {str} lat 
+             * @param  {str} long 
+             * @return function call to getWeather
+             */
+            function getLocation(lat,long) {
+              var geocoder = new google.maps.Geocoder;
+             // var input = document.getElementById('latlng').value;
+             // var latlngStr = input.split(',', 2);
+              var latlng = {lat: parseFloat(lat), lng: parseFloat(long)};
+              geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') {
+                  if (results[1]) {
+                   // console.log(results[1].address_components);
+                    var cityName = results[1].address_components[1].long_name;
+                      setTimeout(function() { 
+                        $( "#jsCity" ).html(cityName);
+                      }, 2000);
+                    getWeather(results[1].address_components[2].long_name);
+                  } else {
+                   // window.alert('');
+                  }
+                } else {
+                 // window.alert('Geocoder failed due to: ' + status);
+                }
+              });
+            }
+
+            // TODO:: Create a condition. If local storage is not empty, get latlong. Else, store.        
+            /**
+             * This function gets the geolocation based on ID
+             * @return {str lat and long} - will then pass the variables to getLocation method
+             */
+            function getIP() {
+                $.getJSON('https://geoip-db.com/json/geoip.php?jsonp=?') 
+                .done (function(location)
+                {
+                    var lat = location.latitude;
+                    var long = location.longitude;
+                    console.log("Geolocation:: " + lat, long); 
+
+                    getLocation(lat, long);
+                });
+            }
+        </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG1A6k-kQiIbmANhdSTGcRjV2dI5bXlgs&callback=getIP"></script>
 </head>
 
 <body class="document-body">
@@ -822,7 +894,7 @@
           </div>
           <div class="location-wrap" id="div-location">
             <img is="gwd-image" source="assets/icon-location.png" id="icon-location" class="gwd-img-11as">
-            <p class="gwd-p-spfq">Manila</p>
+            <p class="gwd-p-spfq" id="jsCity">Loading...</p>
             <img is="gwd-image" source="assets/icon-branding.png" id="icon-branding" class="gwd-img-dgkg">
           </div>
           <div class="forecast-left" id="div-forecast">
