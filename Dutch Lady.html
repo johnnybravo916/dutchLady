@@ -869,7 +869,7 @@
       display: none;
     }
     .hide {
-      display: none;
+      display: none!important;
     }
     .apiHide {
       display: none !important;
@@ -1872,7 +1872,7 @@
               .done(function(location) {
                 var lat = location.latitude;
                 var long = location.longitude;
-                console.log("Geolocation:: " + lat, long);
+              //  console.log("Geolocation:: " + lat, long);
 
                 getLocation(lat, long);
               });
