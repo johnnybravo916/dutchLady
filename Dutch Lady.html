@@ -673,10 +673,14 @@
     .gwd-img-g3ye {
       width: 58px;
       height: 24px;
+      left: 0px;
+      top: 0px;
     }
     .gwd-taparea-1xdw {
       height: 23px;
       transform-origin: 30px 11.5px 0px;
+      left: 0px;
+      top: -1px;
     }
     .gwd-img-3leb {
       width: 53px;
@@ -735,12 +739,15 @@
     }
     .gwd-img-qknd {
       height: 24px;
-      left: 441px;
       width: 58px;
+      left: 0px;
+      top: 0px;
     }
     .gwd-taparea-mj1g {
       height: 23px;
       transform-origin: 30px 11.5px 0px;
+      left: 0px;
+      top: 0px;
     }
     #expanded-page_1.gwd-play-animation .event-3-animation {
       animation: gwd-empty-animation 0.0001s linear 0s 1 normal forwards;
@@ -890,8 +897,8 @@
       <div is="gwd-page" id="banner-page" data-gwd-name="Home page" class="gwd-page-wrapper banner gwd-lightbox" data-gwd-width="100%" data-gwd-height="100%">
         <div class="gwd-page-content banner">
           <div class="video-wrap" id="div-video">
-            <video is="gwd-video" id="video_sunny" muted="" sources="assets/sunny.mp4" class="gwd-video-1tmw weatherSunny" data-gwd-name="video_sunny" loop="" autoplay=""></video>
-            <video is="gwd-video" id="RY-video" muted="" sources="assets/rainy.mp4" class="gwd-video-1lao weatherRainy" loop="" autoplay=""></video>
+            <video is="gwd-video" id="video_sunny" muted="" sources="assets/sunny.mp4" class="gwd-video-1tmw weatherSunny" data-gwd-name="video_sunny" autoplay=""></video>
+            <video is="gwd-video" id="RY-video" muted="" sources="assets/rainy.mp4" class="gwd-video-1lao weatherRainy" autoplay=""></video>
           </div>
           <div class="location-wrap" id="div-location">
             <img is="gwd-image" source="assets/icon-location.png" id="icon-location" class="gwd-img-11as">
@@ -922,7 +929,7 @@
           <img is="gwd-image" source="assets/img-family-A.jpg" id="img-family-A" class="gwd-img-fgfs gwd-gen-c3m1gwdanimation">
           <img is="gwd-image" source="assets/img-family-B.jpg" id="img-family-B" class="hide gwd-img-1c9g gwd-gen-c3m1gwdanimation">
           <img is="gwd-image" source="assets/icon-branding.png" id="icon-branding-inner" class="gwd-img-erfs" data-gwd-tl-locked="">
-          <img is="gwd-image" source="assets/button-close.png" id="button-close" class="gwd-img-129q gwd-img-qknd" data-gwd-tl-locked="">
+          <img is="gwd-image" source="assets/button-close.png" id="button-close" class="gwd-img-129q gwd-img-qknd">
           <gwd-taparea id="close-button" class="close-button gwd-taparea-mj1g"></gwd-taparea>
           <img is="gwd-image" source="assets/product-dutch-A.png" id="img-pinkMilk" class="gwd-img-n8ib gwd-gen-1npkgwdanimation" data-gwd-tl-locked="">
           <img is="gwd-image" source="assets/product-dutch-B.png" id="img-brownMilk" class="gwd-img-ef51 gwd-gen-86wugwdanimation" data-gwd-tl-locked="">
@@ -1086,14 +1093,14 @@
       $('#jsCity').text(cityName);
     };
     gwd.weather = function(event) {
-    var weatherData = $('.getWeather').text();
-    if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
-    $(".weatherSunny").css('opacity', 0);
-    $(".weatherRainy").css('opacity', 1);
-    } else {
-    $(".weatherSunny").css('opacity', 1);
-    $(".weatherRainy").css('opacity', 0);
-    }
+      var weatherData = $('.getWeather').text();
+      if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
+        $(".weatherSunny").css('opacity', 0);
+        $(".weatherRainy").css('opacity', 1);
+      } else {
+        $(".weatherSunny").css('opacity', 1);
+        $(".weatherRainy").css('opacity', 0);
+      }
     };
   </script>
   <script type="text/javascript" id="gwd-init-code">
