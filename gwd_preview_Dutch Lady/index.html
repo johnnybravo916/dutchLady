@@ -1629,12 +1629,16 @@ body {
 .gwd-img-g3ye {
     width: 58px;
     height: 24px;
+    left: 0px;
+    top: 0px;
 }
 .gwd-taparea-1xdw {
     height: 23px;
     transform-origin: 30px 11.5px 0px;
     -webkit-transform-origin: 30px 11.5px 0px;
     -moz-transform-origin: 30px 11.5px 0px;
+    left: 0px;
+    top: -1px;
 }
 .gwd-img-3leb {
     width: 53px;
@@ -1800,14 +1804,17 @@ body {
 }
 .gwd-img-qknd {
     height: 24px;
-    left: 441px;
     width: 58px;
+    left: 0px;
+    top: 0px;
 }
 .gwd-taparea-mj1g {
     height: 23px;
     transform-origin: 30px 11.5px 0px;
     -webkit-transform-origin: 30px 11.5px 0px;
     -moz-transform-origin: 30px 11.5px 0px;
+    left: 0px;
+    top: 0px;
 }
 #expanded-page_1.gwd-play-animation .event-3-animation {
     animation: gwd-empty-animation 0.0001s linear 0s 1 normal forwards;
@@ -2167,14 +2174,14 @@ body {
       $('#jsCity').text(cityName);
     };
     gwd.weather = function(event) {
-    var weatherData = $('.getWeather').text();
-    if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
-    $(".weatherSunny").css('opacity', 0);
-    $(".weatherRainy").css('opacity', 1);
-    } else {
-    $(".weatherSunny").css('opacity', 1);
-    $(".weatherRainy").css('opacity', 0);
-    }
+      var weatherData = $('.getWeather').text();
+      if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
+        $(".weatherSunny").css('opacity', 0);
+        $(".weatherRainy").css('opacity', 1);
+      } else {
+        $(".weatherSunny").css('opacity', 1);
+        $(".weatherRainy").css('opacity', 0);
+      }
     };
   </script>
   <script type="text/javascript" id="gwd-init-code">
