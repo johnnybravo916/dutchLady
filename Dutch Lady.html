@@ -1147,9 +1147,6 @@
     #banner-page.gwd-play-animation .var-location-animation {
       animation: gwd-empty-animation 0.431s linear 0s 1 normal forwards;
     }
-    #banner-page.gwd-play-animation .var-weather-animation {
-      animation: gwd-empty-animation 0.344s linear 0s 1 normal forwards;
-    }
     #expanded-page.gwd-play-animation .css-moreSunnyHide-animation {
       animation: gwd-empty-animation 0.006s linear 0s 1 normal forwards;
     }
@@ -1176,8 +1173,8 @@
     }
     .gwd-img-ur83 {
       position: absolute;
-      width: 216px;
-      height: 81px;
+      width: auto;
+      height: auto;
       left: 32px;
       top: 144px;
       opacity: 0;
@@ -1807,19 +1804,14 @@
     #expanded-page.gwd-play-animation .gwd-gen-c3m1gwdanimation {
       animation: gwd-gen-c3m1gwdanimation_gwd-keyframes 7s linear 0s 1 normal forwards;
     }
-    video.weatherSunny{
-      background:transparent url('assets/bg-main.jpg') no-repeat 0 0; 
-      -webkit-background-size:cover; 
-      -moz-background-size:cover; 
-      -o-background-size:cover; 
-      background-size:cover; 
+    video.weatherSunny {
+      background: url("assets/bg-main.jpg") 0px 0px / cover no-repeat transparent;
     }
-    video.weatherRainy{
-      background:transparent url('assets/bg-main-rainy.jpg') no-repeat 0 0; 
-      -webkit-background-size:cover; 
-      -moz-background-size:cover; 
-      -o-background-size:cover; 
-      background-size:cover; 
+    video.weatherRainy {
+      background: url("assets/bg-main-rainy.jpg") 0px 0px / cover no-repeat transparent;
+    }
+    #banner-page.gwd-play-animation .var-weather-animation {
+      animation: gwd-empty-animation 0.725s linear 0s 1 normal forwards;
     }
   </style><script data-source="googbase_min.js" data-version="3" data-exports-type="googbase" src="googbase_min.js"></script><script data-source="gwd_webcomponents_min.js" data-version="5" data-exports-type="gwd_webcomponents" src="gwd_webcomponents_min.js"></script>
   <script
@@ -1835,30 +1827,15 @@
           var familyImg = "";
           var familyTag = "";
 
-          /**
-           * Utilizes openweather API to get current weather by providing the city name.
-           * @param  {str} location
-           * @return HTML - string of current weather and weather icon
-           */
           function getWeather(location) {
             Weather.getCurrent(location, function(current) {
-              var weatherData = current.data.weather[0].main;
+              var weatherData = 'current.data.weather[0].main';
               $("body").append("<p class='getWeather apiHide'>" + weatherData + "</p>");
-
-              console.log("weather:: " + current.data.weather[0].main);
             });
           }
 
-          /**
-           * Get Location uses google maps api to get the city name that is needed by the weather API
-           * @param  {str} lat
-           * @param  {str} long
-           * @return function call to getWeather
-           */
           function getLocation(lat, long) {
             var geocoder = new google.maps.Geocoder;
-            // var input = document.getElementById('latlng').value;
-            // var latlngStr = input.split(',', 2);
             var latlng = {
               lat: parseFloat(lat),
               lng: parseFloat(long)
@@ -1871,28 +1848,19 @@
 
                   var cityName = results[1].address_components[1].long_name;
                   $("body").append("<p class='getCity apiHide'>" + cityName + "</p>");
-                  console.log("Cityname" + results[1].address_components[1].long_name);
+                  // console.log("Cityname" + results[1].address_components[1].long_name);
                   getWeather(results[1].address_components[2].long_name);
-                } else {
-                  // window.alert('');
-                }
-              } else {
-                // window.alert('Geocoder failed due to: ' + status);
-              }
+                } else {}
+              } else {}
             });
           }
 
-           // TODO:: Create a condition. If local storage is not empty, get latlong. Else, store.        
-          /**
-           * This function gets the geolocation based on ID
-           * @return {str lat and long} - will then pass the variables to getLocation method
-           */
           function getIP() {
             $.getJSON('https://geoip-db.com/json/geoip.php?jsonp=?')
               .done(function(location) {
                 var lat = location.latitude;
                 var long = location.longitude;
-                console.log("geolocation:: " + lat, long);
+                //console.log("geolocation:: " + lat, long);
 
                 getLocation(lat, long);
               });
@@ -1938,7 +1906,7 @@
           <div class="gwd-animation-event hide-rollover-animation" data-event-name="hide-rollover" data-event-time="0"></div>
           <div class="gwd-animation-event show-rollover-animation" data-event-name="show-rollover" data-event-time="1144"></div>
           <div class="gwd-animation-event var-location-animation" data-event-name="var-location" data-event-time="431"></div>
-          <div class="gwd-animation-event var-weather-animation" data-event-name="var-weather" data-event-time="344"></div>
+          <div class="gwd-animation-event var-weather-animation" data-event-name="var-weather" data-event-time="725"></div>
         </div>
       </div>
       <div is="gwd-page" id="expanded-page" expanded="" data-gwd-name="Sunny page" class="gwd-page-wrapper expanded gwd-lightbox" data-gwd-width="500px" data-gwd-height="250px">
@@ -2121,7 +2089,6 @@
       gwd.actions.events.setInlineStyle('button-rollover', 'display: block; ');
     };
     gwd.randomTaglines = function(event) {
-<<<<<<< HEAD
       var weatherData = $('.getWeather').text();
       var tagline = [];
       if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
@@ -2129,33 +2096,23 @@
           ["text-tagline-C.png", "img-family-C.jpg", "img-family-C.png"],
           ["text-tagline-D.png", "img-family-D.jpg", "img-family-D.png"]
         ];
-      }
-      else {
+      } else {
         tagline = [ // sunny
           ["text-tagline-A.png", "img-family-A.jpg", "img-family-A.png"],
           ["text-tagline-B.png", "img-family-B.jpg", "img-family-B.png"]
         ];
       }
-      
-      console.log(tagline);
-=======
-      var tagline = [
-        ["text-tagline-C.png", "assets/img-family-C.jpg"],
-        ["text-tagline-A.png", "assets/img-family-A.jpg"]
-      ];
->>>>>>> f238d50ed1aa10c2996704c577c1865b853cbc93
+      // console.log(tagline); 
       var size = tagline.length;
       var x = Math.floor(size * Math.random());
       document.getElementById("text-tagline-A").setAttribute("source", tagline[x][0]);
       familyImg = tagline[x][1];
       familyTag = tagline[x][2];
+      console.log(tagline);
     };
     gwd.setInnerElements = function(event) {
-      console.log(familyImg + " " + familyTag);
-      
-      if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
-      }
-      else {
+      var weatherData = $('.getWeather').text();
+      if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {} else {
         document.getElementById("img-family-B").setAttribute("source", familyImg);
         document.getElementById("img-familyTag-B").setAttribute("source", familyTag);
       }
