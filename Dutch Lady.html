@@ -1818,6 +1818,9 @@
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" src="weather.js"></script>
         <script>
+          var familyImg = "";
+          var familyTag = "";
+
           /**
            * Utilizes openweather API to get current weather by providing the city name.
            * @param  {str} location
@@ -1927,10 +1930,10 @@
       <div is="gwd-page" id="expanded-page" expanded="" data-gwd-name="Sunny page" class="gwd-page-wrapper expanded gwd-lightbox" data-gwd-width="500px" data-gwd-height="250px">
         <div class="gwd-page-content expanded">
           <img is="gwd-image" source="assets/img-final.jpg" id="bg-main" class="gwd-img-15zi gwd-img-ovzq gwd-gen-wrn3gwdanimation" data-gwd-tl-locked="">
-          <img is="gwd-image" source="assets/img-family-B.jpg" id="img-family-B" class="hide gwd-img-1c9g gwd-img-1704 gwd-gen-c3m1gwdanimation">
-          <img is="gwd-image" source="assets/img-family-B.png" id="img-familyTag-B" class="hide gwd-img-ur83 gwd-gen-1in5gwdanimation">
-          <img is="gwd-image" source="assets/img-family-A.jpg" id="img-family-A" class="gwd-img-12zv gwd-gen-1m6mgwdanimation">
-          <img is="gwd-image" source="assets/img-family-A.png" id="img-familyTag-A" class="gwd-img-1goi gwd-gen-1uo5gwdanimation" data-gwd-tl-locked="">
+          <img is="gwd-image" source="" id="img-family-B" class="gwd-img-1c9g gwd-img-1704 gwd-gen-c3m1gwdanimation">
+          <img is="gwd-image" source="" id="img-familyTag-B" class="gwd-img-ur83 gwd-gen-1in5gwdanimation">
+          <!--           <img is="gwd-image" source="assets/img-family-A.jpg" id="img-family-A" class="gwd-img-12zv gwd-gen-1m6mgwdanimation">
+          <img is="gwd-image" source="assets/img-family-A.png" id="img-familyTag-A" class="gwd-img-1goi gwd-gen-1uo5gwdanimation" data-gwd-tl-locked=""> -->
           <img is="gwd-image" source="assets/product-dutch-A.png" id="img-pinkMilk" class="gwd-img-n8ib gwd-gen-1npkgwdanimation" data-gwd-tl-locked="">
           <img is="gwd-image" source="assets/product-dutch-B.png" id="img-brownMilk" class="gwd-img-ef51 gwd-gen-86wugwdanimation" data-gwd-tl-locked="">
           <img is="gwd-image" source="assets/text-main-B.png" id="text-mainB" class="gwd-img-qvok gwd-gen-8cyygwdanimation" data-gwd-tl-locked="">
@@ -1993,6 +1996,7 @@
       gwd.actions.events.addHandler('banner-page', 'show-rollover', gwd.auto_Banner_pageShow_rollover, false);
       gwd.actions.events.addHandler('banner-page', 'var-weather', gwd.randomTaglines, false);
       gwd.actions.events.addHandler('banner-page', 'show-rollover', gwd.location, false);
+      gwd.actions.events.addHandler('expanded-page', 'pagepresenting', gwd.setInnerElements, false);
       gwd.actions.timeline.captureAnimationEnd(document.body);
     };
     gwd.actions.events.deregisterEventHandlers = function(event) {
@@ -2015,6 +2019,7 @@
       gwd.actions.events.removeHandler('banner-page', 'show-rollover', gwd.auto_Banner_pageShow_rollover, false);
       gwd.actions.events.removeHandler('banner-page', 'var-weather', gwd.randomTaglines, false);
       gwd.actions.events.removeHandler('banner-page', 'show-rollover', gwd.location, false);
+      gwd.actions.events.removeHandler('expanded-page', 'pagepresenting', gwd.setInnerElements, false);
       gwd.actions.timeline.releaseAnimationEnd(document.body);
     };
     document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
@@ -2102,17 +2107,37 @@
       gwd.actions.events.setInlineStyle('button-rollover', 'display: block; ');
     };
     gwd.randomTaglines = function(event) {
-      var tagline = [
-        ["text-tagline-C.png", "assets/img-family-A.jpg"],
-        ["text-tagline-A.png", "assets/img-family-A.jpg"]
-      ];
+      var weatherData = $('.getWeather').text();
+      var tagline = [];
+      if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
+        tagline = [ // rainy
+          ["text-tagline-C.png", "img-family-C.jpg", "img-family-C.png"],
+          ["text-tagline-D.png", "img-family-D.jpg", "img-family-D.png"]
+        ];
+      }
+      else {
+        tagline = [ // sunny
+          ["text-tagline-A.png", "img-family-A.jpg", "img-family-A.png"],
+          ["text-tagline-B.png", "img-family-B.jpg", "img-family-B.png"]
+        ];
+      }
+      
+      console.log(tagline);
       var size = tagline.length;
       var x = Math.floor(size * Math.random());
-      //console.log(tagline[x][0]);
-      document.getElementById("text-tagline-A").setAttribute("source", tagline[x][0]); //familyImg = tagline[x][0];
+      document.getElementById("text-tagline-A").setAttribute("source", tagline[x][0]);
+      familyImg = tagline[x][1];
+      familyTag = tagline[x][2];
     };
-    gwd.initialLocation = function(event) {
-      document.getElementById("jsCity").value = "test";
+    gwd.setInnerElements = function(event) {
+      console.log(familyImg + " " + familyTag);
+      
+      if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
+      }
+      else {
+        document.getElementById("img-family-B").setAttribute("source", familyImg);
+        document.getElementById("img-familyTag-B").setAttribute("source", familyTag);
+      }
     };
   </script>
   <script type="text/javascript" id="gwd-init-code">
