@@ -155,7 +155,7 @@ body {
 }
 .gwd-p-spfq {
     position: absolute;
-    width: 128px;
+    width: 145px;
     height: 53px;
     color: rgb(255, 255, 255);
     font-family: "Arial Black";
@@ -164,7 +164,7 @@ body {
     text--moz-transform: uppercase;
     font-size: 13px;
     left: 65px;
-    top: 34px;
+    top: 35px;
     opacity: 0;
 }
 .video-wrap {
@@ -2195,7 +2195,7 @@ body {
     display: none;
 }
 .hide {
-    display: none;
+    display: none !important;
 }
 .apiHide {
     display: none !important;
@@ -2221,7 +2221,7 @@ body {
         -webkit-animation-timing-function: linear;
         -moz-animation-timing-function: linear;
     }
-    28.57% {
+    21.83% {
         opacity: 1;
         animation-timing-function: linear;
         -webkit-animation-timing-function: linear;
@@ -2251,7 +2251,7 @@ body {
         opacity: 0;
         -webkit-animation-timing-function: linear;
     }
-    28.57% {
+    21.83% {
         opacity: 1;
         -webkit-animation-timing-function: linear;
     }
@@ -2273,7 +2273,7 @@ body {
         opacity: 0;
         -moz-animation-timing-function: linear;
     }
-    28.57% {
+    21.83% {
         opacity: 1;
         -moz-animation-timing-function: linear;
     }
@@ -2290,7 +2290,7 @@ body {
         -moz-animation-timing-function: linear;
     }
 }
-#banner-page.gwd-play-animation .gwd-gen-1p6tgwdanimation {
+.gwd-play-animation #div-location .gwd-gen-1p6tgwdanimation {
     animation: gwd-gen-1p6tgwdanimation_gwd-keyframes 3.5s linear 0s 1 normal forwards;
     -webkit-animation: gwd-gen-1p6tgwdanimation_gwd-keyframes 3.5s linear 0s 1 normal forwards;
     -moz-animation: gwd-gen-1p6tgwdanimation_gwd-keyframes 3.5s linear 0s 1 normal forwards;
@@ -5221,6 +5221,8 @@ body {
             Weather.getCurrent(location, function(current) {
               var weatherData = current.data.weather[0].main;
               $("body").append("<p class='getWeather apiHide'>" + weatherData + "</p>");
+
+              console.log("weather:: " + current.data.weather[0].main);
             });
           }
 
@@ -5243,9 +5245,10 @@ body {
             }, function(results, status) {
               if (status === 'OK') {
                 if (results[1]) {
-                  // console.log(results[1].address_components);
+
                   var cityName = results[1].address_components[1].long_name;
                   $("body").append("<p class='getCity apiHide'>" + cityName + "</p>");
+                  console.log("Cityname" + results[1].address_components[1].long_name);
                   getWeather(results[1].address_components[2].long_name);
                 } else {
                   // window.alert('');
@@ -5266,7 +5269,7 @@ body {
               .done(function(location) {
                 var lat = location.latitude;
                 var long = location.longitude;
-                console.log("Geolocation:: " + lat, long);
+                console.log("geolocation:: " + lat, long);
 
                 getLocation(lat, long);
               });
@@ -5303,10 +5306,10 @@ body {
             <img is="gwd-image" source="icon-rainy.png" id="RY-icon-rainy" class="gwd-img-z4p3 weatherRainy gwd-gen-iz0pgwdanimation">
           </div>
           <div class="tagline-bottom" id="div-tagline">
-            <img is="gwd-image" source="text-tagline-A.png" id="text-tagline-A" class="gwd-img-1rll weatherSunny gwd-gen-70aegwdanimation">
-            <img is="gwd-image" source="text-tagline-B.png" id="text-tagline-B" class="gwd-img-ajzb weatherSunny gwd-gen-ygq8gwdanimation">
+            <img is="gwd-image" source="" id="text-tagline-A" class="gwd-img-1rll weatherSunny gwd-gen-70aegwdanimation">
+            <!--             <img is="gwd-image" source="text-tagline-B.png" id="text-tagline-B" class="hide gwd-img-ajzb weatherSunny gwd-gen-ygq8gwdanimation"> -->
             <img is="gwd-image" source="text-tagline-C.png" id="RY-text-tagline-C" class="gwd-img-fcc6 weatherRainy gwd-gen-1761gwdanimation">
-            <img is="gwd-image" source="text-tagline-D.png" id="RY-text-tagline-D" class="gwd-img-ch3u weatherRainy gwd-gen-16e7gwdanimation">
+            <img is="gwd-image" source="text-tagline-D.png" id="RY-text-tagline-D" class="hide gwd-img-ch3u weatherRainy gwd-gen-16e7gwdanimation">
           </div>
           <img is="gwd-image" source="button-rollover.png" id="button-rollover" class="gwd-img-jhhu gwd-gen-xfdggwdanimation" scaling="cover">
           <div class="gwd-animation-event hide-rollover-animation" data-event-name="hide-rollover" data-event-time="0"></div>
@@ -5318,10 +5321,10 @@ body {
       <div is="gwd-page" id="expanded-page" expanded="" data-gwd-name="Sunny page" class="gwd-page-wrapper expanded gwd-lightbox" data-gwd-width="500px" data-gwd-height="250px">
         <div class="gwd-page-content expanded">
           <img is="gwd-image" source="img-final.jpg" id="bg-main" class="gwd-img-15zi gwd-img-ovzq gwd-gen-wrn3gwdanimation">
-          <img is="gwd-image" source="img-family-B.jpg" id="img-family-B" class="gwd-img-1c9g gwd-img-1704 gwd-gen-c3m1gwdanimation">
+          <img is="gwd-image" source="img-family-B.jpg" id="img-family-B" class="hide gwd-img-1c9g gwd-img-1704 gwd-gen-c3m1gwdanimation">
+          <img is="gwd-image" source="img-family-B.png" id="img-familyTag-B" class="hide gwd-img-ur83 gwd-gen-1in5gwdanimation">
           <img is="gwd-image" source="img-family-A.jpg" id="img-family-A" class="gwd-img-12zv gwd-gen-1m6mgwdanimation">
           <img is="gwd-image" source="img-family-A.png" id="img-familyTag-A" class="gwd-img-1goi gwd-gen-1uo5gwdanimation">
-          <img is="gwd-image" source="img-family-B.png" id="img-familyTag-B" class="gwd-img-ur83 gwd-gen-1in5gwdanimation">
           <img is="gwd-image" source="product-dutch-A.png" id="img-pinkMilk" class="gwd-img-n8ib gwd-gen-1npkgwdanimation">
           <img is="gwd-image" source="product-dutch-B.png" id="img-brownMilk" class="gwd-img-ef51 gwd-gen-86wugwdanimation">
           <img is="gwd-image" source="text-main-B.png" id="text-mainB" class="gwd-img-qvok gwd-gen-8cyygwdanimation">
@@ -5382,6 +5385,8 @@ body {
       gwd.actions.events.addHandler('banner-page', 'var-weather', gwd.weather, false);
       gwd.actions.events.addHandler('banner-page', 'hide-rollover', gwd.auto_Banner_pageHide_rollover, false);
       gwd.actions.events.addHandler('banner-page', 'show-rollover', gwd.auto_Banner_pageShow_rollover, false);
+      gwd.actions.events.addHandler('banner-page', 'var-weather', gwd.randomTaglines, false);
+      gwd.actions.events.addHandler('banner-page', 'show-rollover', gwd.location, false);
       gwd.actions.timeline.captureAnimationEnd(document.body);
     };
     gwd.actions.events.deregisterEventHandlers = function(event) {
@@ -5402,6 +5407,8 @@ body {
       gwd.actions.events.removeHandler('banner-page', 'var-weather', gwd.weather, false);
       gwd.actions.events.removeHandler('banner-page', 'hide-rollover', gwd.auto_Banner_pageHide_rollover, false);
       gwd.actions.events.removeHandler('banner-page', 'show-rollover', gwd.auto_Banner_pageShow_rollover, false);
+      gwd.actions.events.removeHandler('banner-page', 'var-weather', gwd.randomTaglines, false);
+      gwd.actions.events.removeHandler('banner-page', 'show-rollover', gwd.location, false);
       gwd.actions.timeline.releaseAnimationEnd(document.body);
     };
     document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
@@ -5487,6 +5494,19 @@ body {
     gwd.auto_Banner_pageShow_rollover = function(event) {
       // GWD Predefined Function
       gwd.actions.events.setInlineStyle('button-rollover', 'display: block; ');
+    };
+    gwd.randomTaglines = function(event) {
+      var tagline = [
+        ["text-tagline-C.png", "img-family-A.jpg"],
+        ["text-tagline-A.png", "img-family-A.jpg"]
+      ];
+      var size = tagline.length;
+      var x = Math.floor(size * Math.random());
+      //console.log(tagline[x][0]);
+      document.getElementById("text-tagline-A").setAttribute("source", tagline[x][0]); //familyImg = tagline[x][0];
+    };
+    gwd.initialLocation = function(event) {
+      document.getElementById("jsCity").value = "test";
     };
   </script>
   <script type="text/javascript" id="gwd-init-code">

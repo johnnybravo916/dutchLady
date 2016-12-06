@@ -145,14 +145,14 @@
     }
     .gwd-p-spfq {
       position: absolute;
-      width: 128px;
+      width: 145px;
       height: 53px;
       color: rgb(255, 255, 255);
       font-family: "Arial Black";
       text-transform: uppercase;
       font-size: 13px;
       left: 65px;
-      top: 34px;
+      top: 35px;
       opacity: 0;
     }
     .video-wrap {
@@ -869,7 +869,7 @@
       display: none;
     }
     .hide {
-      display: none!important;
+      display: none !important;
     }
     .apiHide {
       display: none !important;
@@ -893,7 +893,7 @@
         opacity: 0;
         animation-timing-function: linear;
       }
-      28.57% {
+      21.83% {
         opacity: 1;
         animation-timing-function: linear;
       }
@@ -910,7 +910,7 @@
         animation-timing-function: linear;
       }
     }
-    #banner-page.gwd-play-animation .gwd-gen-1p6tgwdanimation {
+    .gwd-play-animation #div-location .gwd-gen-1p6tgwdanimation {
       animation: gwd-gen-1p6tgwdanimation_gwd-keyframes 3.5s linear 0s 1 normal forwards;
     }
     @keyframes gwd-gen-mohwgwdanimation_gwd-keyframes {
@@ -1827,6 +1827,8 @@
             Weather.getCurrent(location, function(current) {
               var weatherData = current.data.weather[0].main;
               $("body").append("<p class='getWeather apiHide'>" + weatherData + "</p>");
+
+              console.log("weather:: " + current.data.weather[0].main);
             });
           }
 
@@ -1849,9 +1851,10 @@
             }, function(results, status) {
               if (status === 'OK') {
                 if (results[1]) {
-                  // console.log(results[1].address_components);
+
                   var cityName = results[1].address_components[1].long_name;
                   $("body").append("<p class='getCity apiHide'>" + cityName + "</p>");
+                  console.log("Cityname" + results[1].address_components[1].long_name);
                   getWeather(results[1].address_components[2].long_name);
                 } else {
                   // window.alert('');
@@ -1872,7 +1875,7 @@
               .done(function(location) {
                 var lat = location.latitude;
                 var long = location.longitude;
-              //  console.log("Geolocation:: " + lat, long);
+                console.log("geolocation:: " + lat, long);
 
                 getLocation(lat, long);
               });
@@ -1909,8 +1912,8 @@
             <img is="gwd-image" source="assets/icon-rainy.png" id="RY-icon-rainy" class="gwd-img-z4p3 weatherRainy gwd-gen-iz0pgwdanimation" data-gwd-tl-locked="">
           </div>
           <div class="tagline-bottom" id="div-tagline">
-            <img is="gwd-image" source="assets/text-tagline-A.png" id="text-tagline-A" class="gwd-img-1rll weatherSunny gwd-gen-70aegwdanimation">
-            <img is="gwd-image" source="assets/text-tagline-B.png" id="text-tagline-B" class="hide gwd-img-ajzb weatherSunny gwd-gen-ygq8gwdanimation">
+            <img is="gwd-image" source="" id="text-tagline-A" class="gwd-img-1rll weatherSunny gwd-gen-70aegwdanimation">
+            <!--             <img is="gwd-image" source="assets/text-tagline-B.png" id="text-tagline-B" class="hide gwd-img-ajzb weatherSunny gwd-gen-ygq8gwdanimation"> -->
             <img is="gwd-image" source="assets/text-tagline-C.png" id="RY-text-tagline-C" class="gwd-img-fcc6 weatherRainy gwd-gen-1761gwdanimation">
             <img is="gwd-image" source="assets/text-tagline-D.png" id="RY-text-tagline-D" class="hide gwd-img-ch3u weatherRainy gwd-gen-16e7gwdanimation">
           </div>
@@ -1988,6 +1991,8 @@
       gwd.actions.events.addHandler('banner-page', 'var-weather', gwd.weather, false);
       gwd.actions.events.addHandler('banner-page', 'hide-rollover', gwd.auto_Banner_pageHide_rollover, false);
       gwd.actions.events.addHandler('banner-page', 'show-rollover', gwd.auto_Banner_pageShow_rollover, false);
+      gwd.actions.events.addHandler('banner-page', 'var-weather', gwd.randomTaglines, false);
+      gwd.actions.events.addHandler('banner-page', 'show-rollover', gwd.location, false);
       gwd.actions.timeline.captureAnimationEnd(document.body);
     };
     gwd.actions.events.deregisterEventHandlers = function(event) {
@@ -2008,6 +2013,8 @@
       gwd.actions.events.removeHandler('banner-page', 'var-weather', gwd.weather, false);
       gwd.actions.events.removeHandler('banner-page', 'hide-rollover', gwd.auto_Banner_pageHide_rollover, false);
       gwd.actions.events.removeHandler('banner-page', 'show-rollover', gwd.auto_Banner_pageShow_rollover, false);
+      gwd.actions.events.removeHandler('banner-page', 'var-weather', gwd.randomTaglines, false);
+      gwd.actions.events.removeHandler('banner-page', 'show-rollover', gwd.location, false);
       gwd.actions.timeline.releaseAnimationEnd(document.body);
     };
     document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
@@ -2093,6 +2100,19 @@
     gwd.auto_Banner_pageShow_rollover = function(event) {
       // GWD Predefined Function
       gwd.actions.events.setInlineStyle('button-rollover', 'display: block; ');
+    };
+    gwd.randomTaglines = function(event) {
+      var tagline = [
+        ["text-tagline-C.png", "assets/img-family-A.jpg"],
+        ["text-tagline-A.png", "assets/img-family-A.jpg"]
+      ];
+      var size = tagline.length;
+      var x = Math.floor(size * Math.random());
+      //console.log(tagline[x][0]);
+      document.getElementById("text-tagline-A").setAttribute("source", tagline[x][0]); //familyImg = tagline[x][0];
+    };
+    gwd.initialLocation = function(event) {
+      document.getElementById("jsCity").value = "test";
     };
   </script>
   <script type="text/javascript" id="gwd-init-code">
