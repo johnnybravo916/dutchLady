@@ -147,7 +147,8 @@
       width: 145px;
       height: 53px;
       color: rgb(255, 255, 255);
-      font-family: "Arial Black";
+      font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+      font-weight:bold;
       text-transform: uppercase;
       font-size: 13px;
       left: 65px;
@@ -1991,7 +1992,7 @@
             geocoder.geocode({
               'location': latlng
             }, function(results, status) {
-              if (status === 'OK') {
+              if (status = 'OK') {
                 if (results[1]) {
 
                   cityName = results[1].address_components[1].long_name;
