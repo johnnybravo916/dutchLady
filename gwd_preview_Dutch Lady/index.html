@@ -134,7 +134,7 @@ body {
     width: auto;
     height: 23px;
     left: 25px;
-    top: 17px;
+    top: 22px;
     opacity: 0;
 }
 .gwd-img-mary {
@@ -150,7 +150,7 @@ body {
     width: 28px;
     height: 40px;
     left: 25px;
-    top: 25px;
+    top: 18px;
     opacity: 0;
 }
 .gwd-p-spfq {
@@ -164,7 +164,7 @@ body {
     text--moz-transform: uppercase;
     font-size: 13px;
     left: 65px;
-    top: 35px;
+    top: 27px;
     opacity: 0;
 }
 .video-wrap {
@@ -1408,11 +1408,11 @@ body {
     opacity: 1;
     width: 500px;
     height: 250px;
-    background-image: -webkit-radial-gradient(ellipse closest-side, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 100%);
-    background-image: -moz-radial-gradient(ellipse closest-side, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 100%);
-    background-image: radial-gradient(ellipse closest-side, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 100%);
+    background-image: -webkit-radial-gradient(ellipse closest-side, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+    background-image: -moz-radial-gradient(ellipse closest-side, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+    background-image: radial-gradient(ellipse closest-side, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
     background-repeat: no-repeat;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
 }
 .gwd-img-ajzb {
     position: absolute;
@@ -3126,11 +3126,6 @@ body {
     animation: gwd-empty-animation 1.144s linear 0s 1 normal forwards;
     -webkit-animation: gwd-empty-animation 1.144s linear 0s 1 normal forwards;
     -moz-animation: gwd-empty-animation 1.144s linear 0s 1 normal forwards;
-}
-#banner-page.gwd-play-animation .var-location-animation {
-    animation: gwd-empty-animation 0.431s linear 0s 1 normal forwards;
-    -webkit-animation: gwd-empty-animation 0.431s linear 0s 1 normal forwards;
-    -moz-animation: gwd-empty-animation 0.431s linear 0s 1 normal forwards;
 }
 #expanded-page.gwd-play-animation .css-moreSunnyHide-animation {
     animation: gwd-empty-animation 0.006s linear 0s 1 normal forwards;
@@ -5358,6 +5353,16 @@ video.weatherRainy {
     animation: gwd-empty-animation 1s linear 0s 1 normal forwards;
     -webkit-animation: gwd-empty-animation 1s linear 0s 1 normal forwards;
     -moz-animation: gwd-empty-animation 1s linear 0s 1 normal forwards;
+}
+#banner-page.gwd-play-animation .var-location-animation {
+    animation: gwd-empty-animation 0.512s linear 0s 1 normal forwards;
+    -webkit-animation: gwd-empty-animation 0.512s linear 0s 1 normal forwards;
+    -moz-animation: gwd-empty-animation 0.512s linear 0s 1 normal forwards;
+}
+#banner-page.gwd-play-animation .var-location-backup-animation {
+    animation: gwd-empty-animation 0.856s linear 0s 1 normal forwards;
+    -webkit-animation: gwd-empty-animation 0.856s linear 0s 1 normal forwards;
+    -moz-animation: gwd-empty-animation 0.856s linear 0s 1 normal forwards;
 }</style><script data-source="googbase_min.js" data-version="3" data-exports-type="googbase" src="googbase_min.js"></script><script data-source="gwd_webcomponents_min.js" data-version="5" data-exports-type="gwd_webcomponents" src="gwd_webcomponents_min.js"></script>
   <script data-source="gwdpage_min.js" data-version="8" data-exports-type="gwd-page" src="gwdpage_min.js"></script><script data-source="gwdpagedeck_min.js" data-version="9" data-exports-type="gwd-pagedeck" src="gwdpagedeck_min.js"></script><script data-source="https://s0.2mdn.net/ads/studio/Enabler.js" data-exports-type="gwd-doubleclick" src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
     <script data-source="gwddoubleclick_min.js" data-version="14" data-exports-type="gwd-doubleclick" src="gwddoubleclick_min.js"></script><script data-source="gwdtaparea_min.js" data-version="4" data-exports-type="gwd-taparea" src="gwdtaparea_min.js"></script><script data-source="gwdimage_min.js" data-version="9" data-exports-type="gwd-image" src="gwdimage_min.js"></script>
@@ -5448,8 +5453,9 @@ video.weatherRainy {
           <img is="gwd-image" source="button-rollover.png" id="button-rollover" class="gwd-img-jhhu gwd-gen-xfdggwdanimation" scaling="cover">
           <div class="gwd-animation-event hide-rollover-animation" data-event-name="hide-rollover" data-event-time="0"></div>
           <div class="gwd-animation-event show-rollover-animation" data-event-name="show-rollover" data-event-time="1144"></div>
-          <div class="gwd-animation-event var-location-animation" data-event-name="var-location" data-event-time="431"></div>
           <div class="gwd-animation-event var-weather-animation" data-event-name="var-weather" data-event-time="1000"></div>
+          <div class="gwd-animation-event var-location-animation" data-event-name="var-location" data-event-time="512"></div>
+          <div class="gwd-animation-event var-location-backup-animation" data-event-name="var-location-backup" data-event-time="856"></div>
         </div>
       </div>
       <div is="gwd-page" id="expanded-page" expanded="" data-gwd-name="Sunny page" class="gwd-page-wrapper expanded gwd-lightbox" data-gwd-width="500px" data-gwd-height="250px">
@@ -5478,8 +5484,8 @@ video.weatherRainy {
         <div class="gwd-page-content expanded">
           <img is="gwd-image" source="img-final-rain.jpg" id="bg-main-rainy" class="gwd-img-15zi gwd-img-z1vz gwd-gen-1x0mgwdanimation">
           <img is="gwd-image" source="icon-branding.png" id="icon-branding-inner_1" class="gwd-img-erfs">
-          <img is="gwd-image" source="img-family-D.jpg" id="img-family-D" class="hide gwd-img-1ps5 gwd-gen-jklggwdanimation">
-          <img is="gwd-image" source="img-family-D.png" id="img-familyTag-D" class="hide gwd-img-7s6h gwd-gen-11c6gwdanimation">
+          <!--   <img is="gwd-image" source="img-family-D.jpg" id="img-family-D" class="hide gwd-img-1ps5 gwd-gen-jklggwdanimation" data-gwd-tl-locked="">
+          <img is="gwd-image" source="img-family-D.png" id="img-familyTag-D" class="hide gwd-img-7s6h gwd-gen-11c6gwdanimation"> -->
           <img is="gwd-image" source="img-family-C.jpg" id="img-family-C" class="gwd-img-5pv1 gwd-gen-1nf8gwdanimation">
           <img is="gwd-image" source="img-family-C.png" id="img-familyTag-C" class="gwd-img-otl7 gwd-gen-jiukgwdanimation">
           <img is="gwd-image" source="product-dutch-C.png" id="img-whiteMilk" class="gwd-img-ef51 gwd-img-1vih gwd-gen-a262gwdanimation">
@@ -5523,6 +5529,7 @@ video.weatherRainy {
       gwd.actions.events.addHandler('banner-page', 'show-rollover', gwd.location, false);
       gwd.actions.events.addHandler('expanded-page', 'pagepresenting', gwd.setInnerElements, false);
       gwd.actions.events.addHandler('banner-page', 'pageactivated', gwd.location, false);
+      gwd.actions.events.addHandler('banner-page', 'var-location-backup', gwd.locationBackup, false);
       gwd.actions.timeline.captureAnimationEnd(document.body);
     };
     gwd.actions.events.deregisterEventHandlers = function(event) {
@@ -5547,6 +5554,7 @@ video.weatherRainy {
       gwd.actions.events.removeHandler('banner-page', 'show-rollover', gwd.location, false);
       gwd.actions.events.removeHandler('expanded-page', 'pagepresenting', gwd.setInnerElements, false);
       gwd.actions.events.removeHandler('banner-page', 'pageactivated', gwd.location, false);
+      gwd.actions.events.removeHandler('banner-page', 'var-location-backup', gwd.locationBackup, false);
       gwd.actions.timeline.releaseAnimationEnd(document.body);
     };
     document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
@@ -5658,10 +5666,18 @@ video.weatherRainy {
     };
     gwd.setInnerElements = function(event) {
       var weatherData = $('.getWeather').text();
-      if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {} else {
+      if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
+        document.getElementById("img-family-C").setAttribute("source", familyImg);
+        document.getElementById("img-familyTag-C").setAttribute("source", familyTag);
+      } else {
         document.getElementById("img-family-B").setAttribute("source", familyImg);
         document.getElementById("img-familyTag-B").setAttribute("source", familyTag);
       }
+    };
+    gwd.locationBackup = function(event) {
+      var cityNamebackup = $('.getCity').text();
+      $('#jsCity').text(cityNamebackup);
+      console.log(cityNamebackup);
     };
   </script>
   <script type="text/javascript" id="gwd-init-code">
