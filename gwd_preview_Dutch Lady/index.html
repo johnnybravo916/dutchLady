@@ -3176,7 +3176,10 @@ body {
     -webkit-transform: translate3d(0px, 0px, 0px);
     -moz-transform: translate3d(0px, 0px, 0px);
 }
-.gwd-img-ur83[src*="img-family-A.png"] {} .gwd-img-1704 {
+.gwd-img-ur83[src*="img-family-A.png"] {
+    top: 165px;
+}
+.gwd-img-1704 {
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
@@ -5365,6 +5368,7 @@ video.weatherRainy {
         <script>
           var familyImg = "";
           var familyTag = "";
+          var cityName = "";
 
           function getWeather(location) {
             Weather.getCurrent(location, function(current) {
@@ -5385,9 +5389,9 @@ video.weatherRainy {
               if (status === 'OK') {
                 if (results[1]) {
 
-                  var cityName = results[1].address_components[1].long_name;
+                  cityName = results[1].address_components[1].long_name;
                   $("body").append("<p class='getCity apiHide'>" + cityName + "</p>");
-                  // console.log("Cityname" + results[1].address_components[1].long_name);
+                  console.log("Cityname" + cityName);
                   getWeather(results[1].address_components[2].long_name);
                 } else {}
               } else {}
@@ -5399,7 +5403,7 @@ video.weatherRainy {
               .done(function(location) {
                 var lat = location.latitude;
                 var long = location.longitude;
-                //console.log("geolocation:: " + lat, long);
+                console.log("geolocation:: " + lat, long);
 
                 getLocation(lat, long);
               });
@@ -5518,6 +5522,7 @@ video.weatherRainy {
       gwd.actions.events.addHandler('banner-page', 'var-weather', gwd.randomTaglines, false);
       gwd.actions.events.addHandler('banner-page', 'show-rollover', gwd.location, false);
       gwd.actions.events.addHandler('expanded-page', 'pagepresenting', gwd.setInnerElements, false);
+      gwd.actions.events.addHandler('banner-page', 'pageactivated', gwd.location, false);
       gwd.actions.timeline.captureAnimationEnd(document.body);
     };
     gwd.actions.events.deregisterEventHandlers = function(event) {
@@ -5541,6 +5546,7 @@ video.weatherRainy {
       gwd.actions.events.removeHandler('banner-page', 'var-weather', gwd.randomTaglines, false);
       gwd.actions.events.removeHandler('banner-page', 'show-rollover', gwd.location, false);
       gwd.actions.events.removeHandler('expanded-page', 'pagepresenting', gwd.setInnerElements, false);
+      gwd.actions.events.removeHandler('banner-page', 'pageactivated', gwd.location, false);
       gwd.actions.timeline.releaseAnimationEnd(document.body);
     };
     document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
@@ -5606,8 +5612,9 @@ video.weatherRainy {
       gwd.actions.gwdDoubleclick.exitOverride('gwd-ad', 'dutch-rainy', 'https://www.dutchlady.com.my/', true, true);
     };
     gwd.location = function(event) {
-      var cityName = $('.getCity').text();
+      //var cityName = $('.getCity').text();
       $('#jsCity').text(cityName);
+      console.log(cityName);
     };
     gwd.weather = function(event) {
       var weatherData = $('.getWeather').text();
