@@ -25,14 +25,12 @@
     }
   </style>
   <style type="text/css" id="gwd-text-style">
-@font-face {
-    font-family: 'brevia_blackregular';
-    src: url('brevia-black-webfont.woff2') format('woff2'),
-         url('brevia-black-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
+    @font-face {
+      font-family: brevia_blackregular;
+      src: url("brevia-black-webfont.woff2") format("woff2"), url("brevia-black-webfont.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
     p {
       margin: 0px;
     }
@@ -155,13 +153,13 @@
       width: 145px;
       height: 53px;
       color: rgb(255, 255, 255);
-      font-family: "brevia_blackregular","Arial Black", "Arial Bold", Gadget, sans-serif;
+      font-family: brevia_blackregular, "Arial Black", "Arial Bold", Gadget, sans-serif;
       font-weight: bold;
       text-transform: uppercase;
       font-size: 13px;
       left: 65px;
       top: 27px;
-      text-shadow: rgba(0, 0, 0, 0.1) 1px 2px 2px;
+      text-shadow: rgba(0, 0, 0, 0.0980392) 1px 2px 2px;
       opacity: 0;
     }
     .video-wrap {
@@ -1984,8 +1982,8 @@
     .rainyWeather-wrap .weatherSunny {
       display: none;
     }
-    #img-family-C, #img-family-D{
-      display:none;
+    #img-family-C, #img-family-D {
+      display: none;
     }
   </style><script data-source="googbase_min.js" data-version="3" data-exports-type="googbase" src="googbase_min.js"></script><script data-source="gwd_webcomponents_min.js" data-version="5" data-exports-type="gwd_webcomponents" src="gwd_webcomponents_min.js"></script>
   <script
@@ -2026,7 +2024,7 @@
               if (status = 'OK') {
                 if (results[1]) {
 
-                  cityName = results[1].address_components[4].long_name;
+                  cityName = results[1].address_components[3].long_name;
                   $("body").append("<p class='getCity apiHide'>" + cityName + "</p>");
                   console.log("Cityname" + cityName);
                   getWeather(results[1].address_components[2].long_name);
