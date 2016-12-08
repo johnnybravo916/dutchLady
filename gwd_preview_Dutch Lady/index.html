@@ -4444,6 +4444,9 @@ body {
     -moz-transform-style: preserve-3d;
     opacity: 0;
 }
+.gwd-img-otl7[src*="img-family-C.png"] {
+    top: 30px;
+}
 .gwd-img-7s6h {
     position: absolute;
     width: 228px;
@@ -4668,25 +4671,41 @@ body {
         -moz-animation-timing-function: linear;
     }
     46.67% {
-        transform: translate3d(-145px, 0px, 0px);
-        -webkit-transform: translate3d(-145px, 0px, 0px);
-        -moz-transform: translate3d(-145px, 0px, 0px);
+        transform: translate3d(-132px, 0px, 0px);
+        -webkit-transform: translate3d(-132px, 0px, 0px);
+        -moz-transform: translate3d(-132px, 0px, 0px);
+        animation-timing-function: linear;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-timing-function: linear;
+    }
+    53.33% {
+        transform: translate3d(-132px, 0px, 0px);
+        -webkit-transform: translate3d(-132px, 0px, 0px);
+        -moz-transform: translate3d(-132px, 0px, 0px);
+        animation-timing-function: linear;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-timing-function: linear;
+    }
+    66.67% {
+        transform: translate3d(-132px, 0px, 0px);
+        -webkit-transform: translate3d(-132px, 0px, 0px);
+        -moz-transform: translate3d(-132px, 0px, 0px);
         animation-timing-function: linear;
         -webkit-animation-timing-function: linear;
         -moz-animation-timing-function: linear;
     }
     80% {
-        transform: translate3d(-145px, 0px, 0px);
-        -webkit-transform: translate3d(-145px, 0px, 0px);
-        -moz-transform: translate3d(-145px, 0px, 0px);
+        transform: translate3d(-132px, 0px, 0px);
+        -webkit-transform: translate3d(-132px, 0px, 0px);
+        -moz-transform: translate3d(-132px, 0px, 0px);
         animation-timing-function: linear;
         -webkit-animation-timing-function: linear;
         -moz-animation-timing-function: linear;
     }
     100% {
-        transform: translate3d(-145px, 0px, 0px);
-        -webkit-transform: translate3d(-145px, 0px, 0px);
-        -moz-transform: translate3d(-145px, 0px, 0px);
+        transform: translate3d(-132px, 0px, 0px);
+        -webkit-transform: translate3d(-132px, 0px, 0px);
+        -moz-transform: translate3d(-132px, 0px, 0px);
         animation-timing-function: linear;
         -webkit-animation-timing-function: linear;
         -moz-animation-timing-function: linear;
@@ -4714,15 +4733,23 @@ body {
         -webkit-animation-timing-function: linear;
     }
     46.67% {
-        -webkit-transform: translate3d(-145px, 0px, 0px);
+        -webkit-transform: translate3d(-132px, 0px, 0px);
+        -webkit-animation-timing-function: linear;
+    }
+    53.33% {
+        -webkit-transform: translate3d(-132px, 0px, 0px);
+        -webkit-animation-timing-function: linear;
+    }
+    66.67% {
+        -webkit-transform: translate3d(-132px, 0px, 0px);
         -webkit-animation-timing-function: linear;
     }
     80% {
-        -webkit-transform: translate3d(-145px, 0px, 0px);
+        -webkit-transform: translate3d(-132px, 0px, 0px);
         -webkit-animation-timing-function: linear;
     }
     100% {
-        -webkit-transform: translate3d(-145px, 0px, 0px);
+        -webkit-transform: translate3d(-132px, 0px, 0px);
         -webkit-animation-timing-function: linear;
     }
 }
@@ -4748,15 +4775,23 @@ body {
         -moz-animation-timing-function: linear;
     }
     46.67% {
-        -moz-transform: translate3d(-145px, 0px, 0px);
+        -moz-transform: translate3d(-132px, 0px, 0px);
+        -moz-animation-timing-function: linear;
+    }
+    53.33% {
+        -moz-transform: translate3d(-132px, 0px, 0px);
+        -moz-animation-timing-function: linear;
+    }
+    66.67% {
+        -moz-transform: translate3d(-132px, 0px, 0px);
         -moz-animation-timing-function: linear;
     }
     80% {
-        -moz-transform: translate3d(-145px, 0px, 0px);
+        -moz-transform: translate3d(-132px, 0px, 0px);
         -moz-animation-timing-function: linear;
     }
     100% {
-        -moz-transform: translate3d(-145px, 0px, 0px);
+        -moz-transform: translate3d(-132px, 0px, 0px);
         -moz-animation-timing-function: linear;
     }
 }
@@ -5703,9 +5738,9 @@ video.weatherRainy {
               if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
                 $('html').addClass('rainyWeather-wrap');
               } else {
-                $('html').addClass('rainyWeather-wrap');
+                $('html').addClass('sunnyWeather-wrap');
               }
-              $("body").append("<p class='getWeather apiHide'>" + weatherData + "</p>");
+              $("body").append("<p class='getWeather apiHide'>" + 'Snow' + "</p>");
             });
           }
 
@@ -5863,6 +5898,7 @@ video.weatherRainy {
       gwd.actions.events.addHandler('banner-page', 'var-location-backup', gwd.locationBackup, false);
       gwd.actions.events.addHandler('banner-page', 'event-7', gwd.locationBackup, false);
       gwd.actions.events.addHandler('banner-page', 'event-8', gwd.mobileBG, false);
+      gwd.actions.events.addHandler('expanded-page_1', 'pagepresenting', gwd.setInnerElements, false);
       gwd.actions.timeline.captureAnimationEnd(document.body);
     };
     gwd.actions.events.deregisterEventHandlers = function(event) {
@@ -5890,6 +5926,7 @@ video.weatherRainy {
       gwd.actions.events.removeHandler('banner-page', 'var-location-backup', gwd.locationBackup, false);
       gwd.actions.events.removeHandler('banner-page', 'event-7', gwd.locationBackup, false);
       gwd.actions.events.removeHandler('banner-page', 'event-8', gwd.mobileBG, false);
+      gwd.actions.events.removeHandler('expanded-page_1', 'pagepresenting', gwd.setInnerElements, false);
       gwd.actions.timeline.releaseAnimationEnd(document.body);
     };
     document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);

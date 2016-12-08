@@ -1584,6 +1584,9 @@
       transform-style: preserve-3d;
       opacity: 0;
     }
+    .gwd-img-otl7[src*="img-family-C.png"] {
+      top: 30px;
+      }
     .gwd-img-7s6h {
       position: absolute;
       width: 228px;
@@ -1668,15 +1671,23 @@
         animation-timing-function: linear;
       }
       46.67% {
-        transform: translate3d(-145px, 0px, 0px);
+        transform: translate3d(-132px, 0px, 0px);
+        animation-timing-function: linear;
+      }
+      53.33% {
+        transform: translate3d(-132px, 0px, 0px);
+        animation-timing-function: linear;
+      }
+      66.67% {
+        transform: translate3d(-132px, 0px, 0px);
         animation-timing-function: linear;
       }
       80% {
-        transform: translate3d(-145px, 0px, 0px);
+        transform: translate3d(-132px, 0px, 0px);
         animation-timing-function: linear;
       }
       100% {
-        transform: translate3d(-145px, 0px, 0px);
+        transform: translate3d(-132px, 0px, 0px);
         animation-timing-function: linear;
       }
     }
@@ -1961,8 +1972,8 @@
     #banner-page.gwd-play-animation .event-8-animation {
       animation: gwd-empty-animation 0.075s linear 0s 1 normal forwards;
     }
-    .rainyWeather-wrap .weatherSunny{
-      display:none;
+    .rainyWeather-wrap .weatherSunny {
+      display: none;
     }
   </style><script data-source="googbase_min.js" data-version="3" data-exports-type="googbase" src="googbase_min.js"></script><script data-source="gwd_webcomponents_min.js" data-version="5" data-exports-type="gwd_webcomponents" src="gwd_webcomponents_min.js"></script>
   <script
@@ -1985,7 +1996,7 @@
               if (weatherData == 'Thunderstorm' || weatherData == 'Drizzle' || weatherData == 'Rain' || weatherData == 'Snow') {
                 $('html').addClass('rainyWeather-wrap');
               } else {
-                $('html').addClass('rainyWeather-wrap');
+                $('html').addClass('sunnyWeather-wrap');
               }
               $("body").append("<p class='getWeather apiHide'>" + weatherData + "</p>");
             });
@@ -2101,7 +2112,7 @@
           <img is="gwd-image" source="assets/img-family-C.jpg" id="img-family-C" class="gwd-img-5pv1 gwd-gen-1nf8gwdanimation" data-gwd-tl-locked="">
           <img is="gwd-image" source="assets/img-family-C.png" id="img-familyTag-C" class="gwd-img-otl7 gwd-gen-jiukgwdanimation" data-gwd-tl-locked="">
           <img is="gwd-image" source="assets/product-dutch-C.png" id="img-whiteMilk" class="gwd-img-ef51 gwd-img-1vih gwd-gen-a262gwdanimation" data-gwd-tl-locked="">
-          <img is="gwd-image" source="assets/product-milk.png" id="img-milk" class="gwd-img-n8ib gwd-img-3leb gwd-gen-n7drgwdanimation" data-gwd-tl-locked="">
+          <img is="gwd-image" source="assets/product-milk.png" id="img-milk" class="gwd-img-n8ib gwd-img-3leb gwd-gen-n7drgwdanimation">
           <img is="gwd-image" source="assets/text-main-A_1.png" id="text-mainA_1" class="gwd-img-kk6u gwd-gen-117agwdanimation gwd-img-19zf" data-gwd-tl-locked="">
           <img is="gwd-image" source="assets/text-main-B.png" id="text-mainB_1" class="gwd-img-qvok gwd-gen-1irjgwdanimation">
           <img is="gwd-image" source="assets/button-findout.png" id="button-more-rainy" class="gwd-img-16hc gwd-gen-142sgwdanimation" scaling="none" data-gwd-tl-locked="">
@@ -2145,6 +2156,7 @@
       gwd.actions.events.addHandler('banner-page', 'var-location-backup', gwd.locationBackup, false);
       gwd.actions.events.addHandler('banner-page', 'event-7', gwd.locationBackup, false);
       gwd.actions.events.addHandler('banner-page', 'event-8', gwd.mobileBG, false);
+      gwd.actions.events.addHandler('expanded-page_1', 'pagepresenting', gwd.setInnerElements, false);
       gwd.actions.timeline.captureAnimationEnd(document.body);
     };
     gwd.actions.events.deregisterEventHandlers = function(event) {
@@ -2172,6 +2184,7 @@
       gwd.actions.events.removeHandler('banner-page', 'var-location-backup', gwd.locationBackup, false);
       gwd.actions.events.removeHandler('banner-page', 'event-7', gwd.locationBackup, false);
       gwd.actions.events.removeHandler('banner-page', 'event-8', gwd.mobileBG, false);
+      gwd.actions.events.removeHandler('expanded-page_1', 'pagepresenting', gwd.setInnerElements, false);
       gwd.actions.timeline.releaseAnimationEnd(document.body);
     };
     document.addEventListener("DOMContentLoaded", gwd.actions.events.registerEventHandlers);
